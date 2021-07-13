@@ -15,23 +15,41 @@
         height: 100px;
         border: 1px solid black;
       }
+      .display {
+        display: flex;
+      }
     </style>
   </head>
   <body>
     <h1>User infor</h1>
     <a th:href="@{/}">Back</a>
     <table>
-      <tr th:each="person : ${persons}">
+      <tr>
         <td>
-          <div class="avatar"></div>
+          <div th:each="person , state : ${persons}" th:if="${state.odd}">
+            <div class="display">
+              <div class="avatar"></div>
+              <ul>
+                <li th:text="${person.name}"></li>
+                <li th:text="${person.nationality}"></li>
+                <li th:text="${person.birthdate}"></li>
+                <li th:text="${person.gender}"></li>
+              </ul>
+            </div>
+          </div>
         </td>
         <td>
-          <ul>
-            <li th:text="${person.name}"></li>
-            <li th:text="${person.nationality}"></li>
-            <li th:text="${person.birthdate}"></li>
-            <li th:text="${person.gender}"></li>
-          </ul>
+          <div th:each="person , state : ${persons}" th:if="${state.even}">
+            <div class="display">
+              <div class="avatar"></div>
+              <ul>
+                <li th:text="${person.name}"></li>
+                <li th:text="${person.nationality}"></li>
+                <li th:text="${person.birthdate}"></li>
+                <li th:text="${person.gender}"></li>
+              </ul>
+            </div>
+          </div>
         </td>
       </tr>
     </table>
